@@ -167,69 +167,88 @@
   <script>
     // Product scrolling: native scroll on mobile, carousel on desktop
     // Product cards scroll logic with current, prev, next classes on mobile
-let currentProductIndex = 0;
-const cardsEl = document.querySelectorAll('.product-card');
-const wrapEl = document.getElementById('productsWrapper');
-const totalCards = cardsEl.length;
-const visible = 3;
+    // Product Carousel/Scroll Logic (PLACE AT BOTTOM OF BODY)
 
-function updateProductClasses() {
-  cardsEl.forEach((card, i) => {
-    card.classList.remove('prev', 'current', 'next', 'first', 'last');
-  });
-  // Mark first and last cards
-  if (cardsEl.length > 0) {
-    cardsEl[0].classList.add('first');
-    cardsEl[cardsEl.length - 1].classList.add('last');
+  let currentProductIndex = 0;
+  const cardsEl = document.querySelectorAll('.product-card');
+  const wrapEl = document.getElementById('productsWrapper');
+  const totalCards = cardsEl.length;
+  const visible = 3;
+  
+  // Add/Remove classes for coverflow style
+  function updateProductClasses() {
+    cardsEl.forEach((card, i) => {
+      card.classList.remove('prev', 'current', 'next', 'first', 'last');
+    });
+    if (cardsEl.length > 0) {
+      cardsEl[0].classList.add('first');
+      cardsEl[cardsEl.length - 1].classList.add('last');
+    }
+    if (window.innerWidth < 769) {
+      cardsEl.forEach((card, idx) => card.style.transform = ""); // Remove transform
+      let current = currentProductIndex;
+      cardsEl[current].classList.add('current');
+      if (current - 1 >= 0) cardsEl[current - 1].classList.add('prev');
+      if (current + 1 < cardsEl.length) cardsEl[current + 1].classList.add('next');
+      // Remove desktop carousel transform
+      wrapEl.style.transform = '';
+    } else {
+      // On desktop, remove coverflow classes
+      cardsEl.forEach(card => card.classList.remove('prev', 'current', 'next'));
+    }
   }
-  if (window.innerWidth < 769) {
-    let current = currentProductIndex;
-    cardsEl[current].classList.add('current');
-    if (current - 1 >= 0) cardsEl[current - 1].classList.add('prev');
-    if (current + 1 < cardsEl.length) cardsEl[current + 1].classList.add('next');
-  } else {
-    cardsEl.forEach(card => card.classList.remove('prev', 'current', 'next'));
-  }
-}
-
-function scrollProducts(dir) {
-  if (window.innerWidth < 769) {
-    // Smooth native scroll on mobile
-    wrapEl.parentElement.scrollBy({ left: dir * 350, behavior: 'smooth' });
-    // Update currentProductIndex based on scroll position
-    setTimeout(() => {
-      const scrollLeft = wrapEl.parentElement.scrollLeft;
-      const cardWidth = cardsEl.offsetWidth + 10; // approx margin
-      currentProductIndex = Math.round(scrollLeft / cardWidth);
-      if (currentProductIndex < 0) currentProductIndex = 0;
-      else if (currentProductIndex >= cardsEl.length) currentProductIndex = cardsEl.length - 1;
+  
+  function scrollProducts(dir) {
+    if (window.innerWidth < 769) {
+      // Native scroll on mobile; update index after scroll
+      wrapEl.parentElement.scrollBy({ left: dir * 350, behavior: 'smooth' });
+      setTimeout(() => {
+        const scrollLeft = wrapEl.parentElement.scrollLeft;
+        const cardWidth = cardsEl.offsetWidth + 10;
+        currentProductIndex = Math.round(scrollLeft / cardWidth);
+        currentProductIndex = Math.max(0, Math.min(cardsEl.length - 1, currentProductIndex));
+        updateProductClasses();
+      }, 300);
+    } else {
+      // Desktop: use transform to carousel scroll
+      currentProductIndex += dir;
+      if (currentProductIndex < 0) currentProductIndex = totalCards - visible;
+      else if (currentProductIndex > totalCards - visible) currentProductIndex = 0;
+      wrapEl.style.transform = `translateX(-${currentProductIndex * 356}px)`;
       updateProductClasses();
-    }, 300);
-  } else {
-    // Carousel transform on desktop
-    currentProductIndex += dir;
-    if (currentProductIndex < 0) currentProductIndex = totalCards - visible;
-    else if (currentProductIndex > totalCards - visible) currentProductIndex = 0;
-    wrapEl.style.transform = `translateX(-${currentProductIndex * 356}px)`;
-    updateProductClasses();
+    }
   }
-}
+  
+  // Detect and fix edge cases on window resize (e.g., switch mobile <-> desktop)
+  window.addEventListener('resize', () => {
+    // On mobile, keep currentProductIndex based on scroll; on desktop, snap to valid range
+    if (window.innerWidth >= 769) {
+      currentProductIndex = Math.max(0, Math.min(currentProductIndex, totalCards - visible));
+      wrapEl.style.transform = `translateX(-${currentProductIndex * 356}px)`;
+    } else {
+      const scrollLeft = wrapEl.parentElement.scrollLeft;
+      const cardWidth = cardsEl.offsetWidth + 10;
+      currentProductIndex = Math.round(scrollLeft / cardWidth);
+    }
+    updateProductClasses();
+  });
+  
+  // Initial
+  updateProductClasses();
+  
+  // Testimonials carousel (keep as is)
+  let ti = 0;
+  const tEls = document.querySelectorAll('.testimonial');
+  function changeTestimonial(dir) {
+    const n = tEls.length;
+    tEls.forEach(el => el.className = 'testimonial');
+    ti = (ti + dir + n) % n;
+    tEls[ti].classList.add('active');
+    tEls[(ti - 1 + n) % n].classList.add('prev');
+    tEls[(ti + 1) % n].classList.add('next');
+  }
+  changeTestimonial(0);
 
-updateProductClasses();
-
-// Testimonials carousel
-let ti = 0;
-const tEls = document.querySelectorAll('.testimonial');
-
-function changeTestimonial(dir) {
-  const n = tEls.length;
-  tEls.forEach(el => el.className = 'testimonial');
-  ti = (ti + dir + n) % n;
-  tEls[ti].classList.add('active');
-  tEls[(ti - 1 + n) % n].classList.add('prev');
-  tEls[(ti + 1) % n].classList.add('next');
-}
-changeTestimonial(0);
 
   </script>
 </body>
