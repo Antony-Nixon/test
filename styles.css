@@ -167,68 +167,77 @@ section {
 /* ==== PRODUCTS ==== */
 .products {
   padding: 120px 0;
-  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  background: linear-gradient(135deg,#f8fafc,#f1f5f9);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
+/* Container: let height be content-driven */
 .products-container {
   position: relative;
-  height: auto; /* Changed from 75vh to auto for responsive content height */
-  overflow: visible;
   padding: 40px 0;
+  height: auto;
+  overflow: visible;
 }
 
+/* Base wrapper */
+.products-wrapper {
+  display: flex;
+  gap: 18px;                 /* use gap, no card margins */
+}
+
+/* Desktop: no scroll, centered row */
 @media (min-width: 901px) {
   .products-wrapper {
-    display: flex;
+    overflow: hidden;
     justify-content: center;
     align-items: stretch;
-    flex-wrap: nowrap;
-    overflow: hidden; /* no scroll on desktop */
-    gap: 18px;
-    padding-bottom: 0;
+    scroll-snap-type: none;  /* disable snap on desktop */
   }
   .product-card {
-    min-width: 300px;
+    flex: 0 0 340px;         /* tidy fixed card width range */
     max-width: 360px;
-    flex: 1 1 auto;
   }
 }
 
+/* Mobile/Tablet: horizontal scroll + snap */
 @media (max-width: 900px) {
   .products-wrapper {
-    display: flex;
-    overflow-x: auto; /* enable horizontal scroll on mobile */
+    overflow-x: auto;
     overflow-y: visible;
-    gap: 18px;
-    padding-bottom: 20px;
-    scrollbar-width: thin;
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth; /* added smooth scrolling */
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;   /* enable snapping per card */
+    padding: 0 4vw;                  /* small side padding so first/last card are not glued to edges */
   }
+}
+
+/* Cards */
+.product-card {
+  flex: 0 0 auto;                    /* prevent shrinking */
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(15px);
+  border-radius: 30px;
+  padding: 50px;
+  text-align: center;
+  transition: 0.4s;
+  border: 1px solid rgba(255,255,255,0.4);
+  scroll-snap-align: start;          /* each card snaps to left edge on mobile */
+}
+
+/* Mobile card width: fits viewport with padding and gap */
+@media (max-width: 900px) {
   .product-card {
-    flex: 0 0 auto;
-    min-width: 85vw;
+    width: 86vw;                     /* viewport-fit width for one-at-a-time view */
     max-width: 92vw;
   }
 }
 
-.product-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(15px);
-  border-radius: 30px;
-  margin: 0;
-  padding: 50px;
-  text-align: center;
-  transition: 0.4s;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
 .product-card:hover {
   transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
-  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.98);
 }
 
 .product-card h3 {
@@ -236,53 +245,36 @@ section {
   font-weight: 700;
   margin-bottom: 25px;
 }
-
 .product-card p {
   font-size: 1.2rem;
   line-height: 1.8;
 }
 
-/* Navigation arrows */
+/* Nav arrows (desktop only) */
 .nav-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 60px;
-  height: 60px;
+  width: 60px; height: 60px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(74, 85, 104, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1.8rem;
-  color: #2d3748;
-  transition: 0.3s;
-  user-select: none;
-  font-weight: 600;
-  z-index: 10;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(74,85,104,0.15);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1.8rem; color: #2d3748;
+  transition: 0.3s; user-select: none; font-weight: 600; z-index: 10;
 }
-
 .nav-arrow:hover {
   background: #fff;
   transform: translateY(-50%) scale(1.15);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.prev{ left:25px; }
+.next{ right:25px; }
+
+@media (max-width: 768px){
+  .nav-arrow{ display:none; }        /* touch scroll on mobile */
 }
 
-.prev {
-  left: 25px;
-}
-
-.next {
-  right: 25px;
-}
-
-@media (max-width: 768px) {
-  .nav-arrow {
-    display: none;
-  }
-}
 
 /* ==== TESTIMONIALS ==== */
 .testimonials {
