@@ -3,9 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>QuanZ - The Elegance of Hydration</title>
+  <title>QuanZ - Tghe Elegance of Hydration</title>
   <link rel="stylesheet" href="styles.css" />
- 
+  <style>
+    /* --- Compact Contact Form Styling --- */
+    .contact-form {
+      padding: 35px 25px;
+      max-width: 350px;
+    }
+    .contact-form h3 {
+      font-size: 2.1rem;
+      margin-bottom: 23px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group input, .form-group textarea {
+      padding: 14px 12px;
+      font-size: 1rem;
+      border-radius: 10px;
+    }
+    .submit-btn {
+      padding: 14px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+    /* Responsiveness for the smaller panel */
+    @media(max-width: 900px){
+      .contact-container {
+        grid-template-columns: 1fr;
+        max-width: 98vw;
+        gap: 30px;
+      }
+      .contact-form { max-width:100%; }
+    }
+  </style>
 </head>
 <body>
   <!-- Hero -->
@@ -52,42 +84,38 @@
       <p style="text-align:center; font-size:1.3rem; margin-bottom:40px;">
         Discover our carefully curated collection of premium water experiences.
       </p>
-      <div class="products-carousel">
-        <button class="nav-arrow prev" aria-label="Previous">‹</button>
-        <div class="products-viewport" id="productsViewport">
-          <div class="products-track" id="productsTrack">
-            <div class="product-card">
-              <h3>Premium Still Water</h3>
-              <p>Pure, refreshing, perfectly balanced for everyday hydration.</p>
-            </div>
-            <div class="product-card">
-              <h3>Sports Water</h3>
-              <p>Electrolyte-enhanced hydration designed for active lifestyles.</p>
-            </div>
-            <div class="product-card">
-              <h3>Alkaline Water</h3>
-              <p>pH 8+ alkaline water for enhanced wellness and vitality.</p>
-            </div>
-            <div class="product-card">
-              <h3>Sparkling Water</h3>
-              <p>Crisp bubbles in flavored and plain varieties for every taste.</p>
-            </div>
-            <div class="product-card">
-              <h3>Custom Bottles & Labels</h3>
-              <p>Personalized glass and PET bottles for special occasions.</p>
-            </div>
-            <div class="product-card">
-              <h3>Herbal Water</h3>
-              <p>Infused with natural herbs for a refreshing, healthy experience.</p>
-            </div>
+      <div class="products-container">
+        <div class="products-wrapper" id="productsWrapper">
+          <div class="product-card">
+            <h3>Premium Still Water</h3>
+            <p>Pure, refreshing, perfectly balanced for everyday hydration.</p>
+          </div>
+          <div class="product-card">
+            <h3>Sports Water</h3>
+            <p>Electrolyte-enhanced hydration designed for active lifestyles.</p>
+          </div>
+          <div class="product-card">
+            <h3>Alkaline Water</h3>
+            <p>pH 8+ alkaline water for enhanced wellness and vitality.</p>
+          </div>
+          <div class="product-card">
+            <h3>Sparkling Water</h3>
+            <p>Crisp bubbles in flavored and plain varieties for every taste.</p>
+          </div>
+          <div class="product-card">
+            <h3>Custom Bottles & Labels</h3>
+            <p>Personalized glass and PET bottles for special occasions.</p>
+          </div>
+          <div class="product-card">
+            <h3>Herbal Water</h3>
+            <p>Infused with natural herbs for a refreshing, healthy experience.</p>
           </div>
         </div>
-        <button class="nav-arrow next" aria-label="Next">›</button>
+        <button class="nav-arrow prev" onclick="scrollProducts(-1)">‹</button>
+        <button class="nav-arrow next" onclick="scrollProducts(1)">›</button>
       </div>
     </div>
   </section>
-
-
 
   <!-- Testimonials -->
   <section class="testimonials">
@@ -176,47 +204,34 @@
   </section>
 
   <script>
-  (function() {
-    const viewport = document.getElementById('productsViewport');
-    const track = document.getElementById('productsTrack');
-    const prevBtn = document.querySelector('.products-carousel .nav-arrow.prev');
-    const nextBtn = document.querySelector('.products-carousel .nav-arrow.next');
-  
-    function cardStep() {
-      const card = track.querySelector('.product-card');
-      if (!card) return 340 + 24; // fallback width + gap
-      const rect = card.getBoundingClientRect();
-      const style = getComputedStyle(track);
-      const gap = parseFloat(style.columnGap || style.gap) || 24;
-      return Math.round(rect.width + gap);
+    // Products carousel: scroll one card at time, 3 visible, circular
+    let currentProductIndex = 0;
+    const cardsEl = document.querySelectorAll('.product-card');
+    const wrapEl = document.getElementById('productsWrapper');
+    const totalCards = cardsEl.length;
+    const visible = 3;
+
+    function scrollProducts(dir) {
+      currentProductIndex += dir;
+      if(currentProductIndex < 0) currentProductIndex = totalCards - visible;
+      else if(currentProductIndex > totalCards - visible) currentProductIndex = 0;
+      wrapEl.style.transform = `translateX(-${currentProductIndex * 356}px)`;
     }
-  
-    function scrollByCard(dir) {
-      const step = cardStep();
-      if (!step) return;
-      viewport.scrollBy({ left: dir * step, behavior: 'smooth' });
+
+    // Testimonials carousel
+    let ti = 0;
+    const tEls = document.querySelectorAll('.testimonial');
+    function changeTestimonial(dir) {
+      const n = tEls.length;
+      tEls.forEach(el => el.className = 'testimonial');
+      ti = (ti + dir + n) % n;
+      tEls[ti].classList.add('active');
+      tEls[(ti - 1 + n) % n].classList.add('prev');
+      tEls[(ti + 1) % n].classList.add('next');
     }
-  
-    if (prevBtn && nextBtn) {
-      prevBtn.addEventListener('click', () => scrollByCard(-1));
-      nextBtn.addEventListener('click', () => scrollByCard(1));
-    }
-  
-    let timer = null;
-    viewport.addEventListener('scroll', () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        if (window.innerWidth > 900) return;
-        const step = cardStep();
-        const x = viewport.scrollLeft;
-        const target = Math.round(x / step) * step;
-        viewport.scrollTo({ left: target, behavior: 'smooth' });
-      }, 120);
-    }, { passive: true });
-  })();
+    changeTestimonial(0);
   </script>
 
-   
-
+  
 </body>
 </html>
