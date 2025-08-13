@@ -120,6 +120,7 @@
   </section>
 
 
+
   <!-- Testimonials -->
   <section class="testimonials">
     <div class="container">
@@ -213,10 +214,9 @@
     const prevBtn = document.querySelector('.products-carousel .nav-arrow.prev');
     const nextBtn = document.querySelector('.products-carousel .nav-arrow.next');
   
-    // Desktop: move by exact card+gap width
     function cardStep() {
       const card = track.querySelector('.product-card');
-      if (!card) return 340 + 24;
+      if (!card) return 340 + 24; // fallback width + gap
       const rect = card.getBoundingClientRect();
       const style = getComputedStyle(track);
       const gap = parseFloat(style.columnGap || style.gap) || 24;
@@ -225,8 +225,8 @@
   
     function scrollByCard(dir) {
       const step = cardStep();
-      if(!step) return;
-      viewport.scrollBy({left: dir * step, behavior: 'smooth'});
+      if (!step) return;
+      viewport.scrollBy({ left: dir * step, behavior: 'smooth' });
     }
   
     if (prevBtn && nextBtn) {
@@ -234,20 +234,20 @@
       nextBtn.addEventListener('click', () => scrollByCard(1));
     }
   
-    // Mobile: always snap after user finishes touch drag.
-    let t = null;
+    let timer = null;
     viewport.addEventListener('scroll', () => {
-      clearTimeout(t);
-      t = setTimeout(() => {
-        if(window.innerWidth > 900) return;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (window.innerWidth > 900) return;
         const step = cardStep();
         const x = viewport.scrollLeft;
         const target = Math.round(x / step) * step;
-        viewport.scrollTo({left: target, behavior: 'smooth'});
+        viewport.scrollTo({ left: target, behavior: 'smooth' });
       }, 120);
-    }, {passive:true});
+    }, { passive: true });
   })();
   </script>
+
 
     // Testimonials carousel
     let ti = 0;
