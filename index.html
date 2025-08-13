@@ -207,19 +207,47 @@
   </section>
 
   <script>
-    // Products carousel: scroll one card at time, 3 visible, circular
-    let currentProductIndex = 0;
-    const cardsEl = document.querySelectorAll('.product-card');
-    const wrapEl = document.getElementById('productsWrapper');
-    const totalCards = cardsEl.length;
-    const visible = 3;
-
-    function scrollProducts(dir) {
-      currentProductIndex += dir;
-      if(currentProductIndex < 0) currentProductIndex = totalCards - visible;
-      else if(currentProductIndex > totalCards - visible) currentProductIndex = 0;
-      wrapEl.style.transform = `translateX(-${currentProductIndex * 356}px)`;
+  (function() {
+    const viewport = document.getElementById('productsViewport');
+    const track = document.getElementById('productsTrack');
+    const prevBtn = document.querySelector('.products-carousel .nav-arrow.prev');
+    const nextBtn = document.querySelector('.products-carousel .nav-arrow.next');
+  
+    // Desktop: move by exact card+gap width
+    function cardStep() {
+      const card = track.querySelector('.product-card');
+      if (!card) return 340 + 24;
+      const rect = card.getBoundingClientRect();
+      const style = getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap) || 24;
+      return Math.round(rect.width + gap);
     }
+  
+    function scrollByCard(dir) {
+      const step = cardStep();
+      if(!step) return;
+      viewport.scrollBy({left: dir * step, behavior: 'smooth'});
+    }
+  
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => scrollByCard(-1));
+      nextBtn.addEventListener('click', () => scrollByCard(1));
+    }
+  
+    // Mobile: always snap after user finishes touch drag.
+    let t = null;
+    viewport.addEventListener('scroll', () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        if(window.innerWidth > 900) return;
+        const step = cardStep();
+        const x = viewport.scrollLeft;
+        const target = Math.round(x / step) * step;
+        viewport.scrollTo({left: target, behavior: 'smooth'});
+      }, 120);
+    }, {passive:true});
+  })();
+  </script>
 
     // Testimonials carousel
     let ti = 0;
