@@ -202,6 +202,17 @@ body {
 .prev { left: 10px; }
 .next { right: 10px; }
 
+/* Hide scrollbar on desktop (screens ≥ 769px) */
+@media (min-width: 769px) {
+  /* For WebKit browsers (Chrome, Safari) */
+  .products-container::-webkit-scrollbar {
+    display: none;
+  }
+  /* For Firefox */
+  .products-container {
+    scrollbar-width: none;
+  }
+}
 /* Testimonials */
 .testimonials {
   padding: 120px 0;
