@@ -88,7 +88,7 @@ body {
 
 /* Features */
 .features {
-  padding: 120px 0;
+  padding: 100px 0;
   background: #fefefe;
 }
 .features-grid {
@@ -135,7 +135,7 @@ body {
 
 /* Products */
 .products {
-  padding: 120px 0;
+  padding: 100px 0;
   background: linear-gradient(135deg,#f8fafc,#f1f5f9);
   min-height: 100vh;
 }
