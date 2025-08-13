@@ -5,39 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QuanZ - The Elegance of Hydration</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* --- Compact Contact Form Styling --- */
-    .contact-form {
-      padding: 35px 25px;
-      max-width: 350px;
-    }
-    .contact-form h3 {
-      font-size: 2.1rem;
-      margin-bottom: 23px;
-    }
-    .form-group { margin-bottom: 18px; }
-    .form-group input, .form-group textarea {
-      padding: 14px 12px;
-      font-size: 1rem;
-      border-radius: 10px;
-    }
-    .submit-btn {
-      padding: 14px;
-      font-size: 1.1rem;
-      border-radius: 10px;
-      margin-top: 8px;
-      cursor: pointer;
-    }
-    /* Responsiveness for the smaller panel */
-    @media(max-width: 900px){
-      .contact-container {
-        grid-template-columns: 1fr;
-        max-width: 98vw;
-        gap: 30px;
-      }
-      .contact-form { max-width:100%; }
-    }
-  </style>
+ 
 </head>
 <body>
   <!-- Hero -->
@@ -248,19 +216,7 @@
   })();
   </script>
 
-    // Testimonials carousel
-    let ti = 0;
-    const tEls = document.querySelectorAll('.testimonial');
-    function changeTestimonial(dir) {
-      const n = tEls.length;
-      tEls.forEach(el => el.className = 'testimonial');
-      ti = (ti + dir + n) % n;
-      tEls[ti].classList.add('active');
-      tEls[(ti - 1 + n) % n].classList.add('prev');
-      tEls[(ti + 1) % n].classList.add('next');
-    }
-    changeTestimonial(0);
-  </script>
+   
 
 </body>
 </html>
