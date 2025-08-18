@@ -41,8 +41,12 @@ body {
 .hero {
   height: 100vh;
   background: 
-    linear-gradient(135deg, #E6F1EC 0%, #C3F5E6 100%),
-    url('https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/97f6647f-15b7-4a2f-a904-ba55f55bcdf6.png') left center/520px no-repeat;
+    linear-gradient(135deg, rgba(230,241,236,0.8) 0%, rgba(195,245,230,0.2) 100%),
+    url('https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/97f6647f-15b7-4a2f-a904-ba55f55bcdf6.png');
+  background-size: cover;       /* makes image fill screen */
+  background-position: center;  /* keeps it centered */
+  background-repeat: no-repeat; /* no tiling */
+  
   display: flex;
   align-items: center;
   justify-content: flex-start;
