@@ -332,7 +332,7 @@ body {
   line-height: 44px;
   border-radius: 50%;
   background: #F7FFFC !important;
-  color: #60CEAA !important;
+  
   font-size: 21px;
   transition: transform 0.3s, box-shadow 0.3s;
   text-align: center;
@@ -341,7 +341,7 @@ body {
 .social-icons a:hover {
   transform: scale(1.14);
   background: #67e0c3 !important;
-  color: #23313A !important;
+ 
   box-shadow: 0 4px 11px #c3f5e658;
 }
 .social-links a.whatsapp {
