@@ -354,6 +354,16 @@ body {
   background: #D44638;
   color: #fff;
 }
+.social-icons img {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
 /* About */
 .about {
   padding: 70px 0;
