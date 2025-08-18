@@ -318,51 +318,45 @@ body {
   color: #23313A; 
 }
 
-
-/* Social Icons */
 .social-icons {
   margin-top: 20px;
   text-align: center;
 }
+
 .social-icons a {
   display: inline-block;
   margin: 0 10px;
-  width: 44px;
-  height: 44px;
-  line-height: 44px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
   border-radius: 50%;
-  font-size: 21px;
+  color: #fff;
+  font-size: 24px;
   transition: transform 0.3s, box-shadow 0.3s;
   text-align: center;
-  border:1.2px solid #60CEAA44;
-  color: #fff;
-}
-.social-icons a:hover {
-  transform: scale(1.14);
-  box-shadow: 0 4px 11px rgba(0,0,0,0.15);
-}
-.social-links a.whatsapp {
-  background: #25D366;   /* WhatsApp green */
-  color: #fff;
-}
-.social-links a.instagram {
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, 
-              #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-  color: #fff;
-}
-.social-links a.email {
-  background: #D44638;
-  color: #fff;
-}
-.social-icons img {
-  width: 40px;
-  height: 40px;
-  margin: 0 10px;
-  transition: transform 0.3s ease;
 }
 
-.social-icons img:hover {
+.social-icons a:hover {
   transform: scale(1.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* WhatsApp */
+.social-icons .whatsapp {
+  background: #25D366;
+}
+
+/* Email */
+.social-icons .email {
+  background: #D44638;
+}
+
+/* Instagram (gradient) */
+.social-icons .instagram {
+  background: radial-gradient(circle at 30% 107%, 
+              #fdf497 0%, #fdf497 5%, 
+              #fd5949 45%, #d6249f 60%, 
+              #285AEB 90%);
 }
 /* About */
 .about {
