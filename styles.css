@@ -40,12 +40,15 @@ body {
 /* HERO */
 .hero {
   height: 100vh;
-  background: linear-gradient(133deg, #E6F1EC 50%, #C3F5E6 100%);
+  background: 
+    linear-gradient(135deg, #E6F1EC 0%, #C3F5E6 100%),
+    url('https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/97f6647f-15b7-4a2f-a904-ba55f55bcdf6.png') left center/520px no-repeat;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding-left: 80px;
   position: relative;
+  min-height: 420px;
 }
 .hero-content {
   position: relative;
@@ -74,6 +77,7 @@ body {
 .testimonial,
 .contact-form {
   background: #fff;
+  padding: 34px 26px;
   color: #23313A;
   border-radius: 20px;
   border: 1px solid #E2E8F0;
@@ -160,6 +164,7 @@ body {
   font-size: 1.01rem;
   color: #23313A;
   line-height: 1.5;
+  text-align: center;
 }
 
 /* Navigation Arrows */
@@ -264,20 +269,7 @@ body {
   font-size: .98rem;
   margin-bottom: .22rem;
 }
-.contact-form input,
-.contact-form textarea {
-  padding: 0.75rem;
-  border-radius: 9px;
-  border: 1px solid #c3f5e6;
-  background: #F7FFFC;
-  color: #23313A;
-  font-size: 1rem;
-  outline: none;
-}
-.contact-form textarea {
-  min-height: 120px;
-  resize: vertical;
-}
+text-align: center;
 .contact-form button {
   background: #60CEAA;
   color: #fff;
@@ -318,11 +310,22 @@ body {
   color: #23313A !important;
   box-shadow: 0 4px 11px #c3f5e658;
 }
-.social-icons .whatsapp { background: #60CEAA !important; color: #fff !important; }
-.social-icons .email { background: #60CEAA !important; color: #fff !important; }
+/* WhatsApp */
+.social-icons .whatsapp {
+  background: #25D366;
+}
+
+/* Email */
+.social-icons .email {
+  background: #D44638;
+}
+
+/* Instagram (gradient) */
 .social-icons .instagram {
-  background: linear-gradient(140deg,#67e0c3 25%,#60CEAA 75%) !important;
-  color: #fff !important;
+  background: radial-gradient(circle at 30% 107%, 
+              #fdf497 0%, #fdf497 5%, 
+              #fd5949 45%, #d6249f 60%, 
+              #285AEB 90%);
 }
 
 /* About */
@@ -359,7 +362,12 @@ body {
 @media (max-width: 1200px) {
   .features-grid {
     grid-template-columns: repeat(2,1fr);
+  .nav-arrow { display: flex !important; }
+  .products-container {
+    overflow-x: hidden;
   }
+    .products-container::-webkit-scrollbar {
+    display: none;
 }
 @media (max-width: 768px) {
   .hero {
