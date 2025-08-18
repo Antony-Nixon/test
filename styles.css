@@ -260,16 +260,13 @@ body {
   padding: 3rem 1rem;
   background: linear-gradient(120deg,#E6F1EC 70%, #F7FFFC 100%);
 }
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  font-weight: bold;
-}
+
 .contact-form-wrapper {
-  max-width: 60%;
-  margin: 0 auto;
+  max-width: 800px;   /* desktop width constraint */
+  margin: 0 auto;     /* center on desktop */
+  padding: 0 20px;    /* side breathing space */
 }
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -280,30 +277,22 @@ body {
   box-shadow: 0 4px 13px #60CEAA14;
   border: 1px solid #e2e8f0;
 }
-.contact-form h3 {
-  color: #23313A;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-.contact-form label {
-  color: #658E7F;
-  font-size: .98rem;
-  margin-bottom: .22rem;
-}
+
 .contact-form input,
 .contact-form textarea {
   padding: 0.75rem;
   border-radius: 8px;
   border: 1px solid #ccc;
   outline: none;
-  font-size: 1rem;
-  font-family: 'Montserrat', sans-serif; /* fix textarea font */
+  font-size: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
 }
+
 .contact-form textarea {
   min-height: 120px;
   resize: vertical;
 }
+
 .contact-form button {
   background: #60CEAA;
   color: #fff;
@@ -316,7 +305,7 @@ body {
   transition: background 0.3s;
   box-shadow: 0 3px 9px #60CEAA30;
   display: block;
-  margin: 0 auto; /* centers the button */
+  margin: 0 auto;
   text-align: center;
   width: 180px;
 }
@@ -324,6 +313,8 @@ body {
   background: #67e0c3; 
   color: #23313A; 
 }
+
+
 
 .social-icons {
   margin-top: 20px;
@@ -413,8 +404,15 @@ body {
   .products-container::-webkit-scrollbar { 
     display: none; 
   }
-}
 
+  .contact-form-wrapper {
+    max-width: 80%;
+  }
+  .contact-form {
+    max-width: 600px;
+    padding: 1.5rem;
+  }
+}
 /* Mobile breakpoint (<=768px) */
 @media (max-width: 768px) {
   .features-grid {
@@ -440,29 +438,17 @@ body {
     overflow-x: auto; /* allow swipe scrolling on mobile */
   }
   
-}
 
+  .contact-form-wrapper {
+    max-width: 100%;
+    padding: 0;
+  }
   .contact-form {
-    width: 100% !important;     /* use entire screen width */
-    max-width: 100% !important; /* remove any desktop max constraint */
-    margin: 0;                  
-    padding: 20px;              /* balanced padding inside */
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 12px;
   }
 
-  .contact-form input,
-  .contact-form textarea,
-  .contact-form button {
-    width: 100%;
-    box-sizing: border-box;
-  }
-.contact-section,
-  .contact-form-wrapper, /* whichever parent container you have */
-  .container {
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: 0 !important;   
-   
-  }
 }
 
 
