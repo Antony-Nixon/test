@@ -312,6 +312,7 @@ body {
   display: block;
   margin: 0 auto; /* centers the button */
   text-align: center;
+  width: 10px;
 }
 .contact-form button:hover { 
   background: #67e0c3; 
