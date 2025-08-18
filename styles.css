@@ -194,6 +194,9 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .nav-arrow { display: none !important; } /* hide on mobile */
+  .products-container { overflow-x: auto; }
 
 /* Testimonials */
 .testimonials {
@@ -433,8 +436,7 @@ body {
 @media (max-width: 480px) {
   .hero h1 { font-size: 1.15rem; }
   .hero p { font-size: 0.7rem; }
-  .section-title { font-size: 1.01rem; }
+  .section-title { font-size: 3rem; }
   .contact-form { padding: 18px 8px; }
   .about-content h3 { font-size: 0.97rem; }
 }
-
