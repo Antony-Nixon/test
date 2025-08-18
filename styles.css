@@ -331,7 +331,7 @@ body {
   height: 44px;
   line-height: 44px;
   border-radius: 50%;
-  background: #F7FFFC !important;
+
   
   font-size: 21px;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -340,9 +340,8 @@ body {
 }
 .social-icons a:hover {
   transform: scale(1.14);
-  background: #67e0c3 !important;
  
-  box-shadow: 0 4px 11px #c3f5e658;
+  box-shadow: 0 4px 11px rgba(0,0,0,0.15);
 }
 .social-links a.whatsapp {
   background: #25D366;   /* WhatsApp green */
