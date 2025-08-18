@@ -95,6 +95,7 @@ body {
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  justify-items: center;
 }
 .feature-icon {
   font-size: 2.2rem;
@@ -312,7 +313,7 @@ body {
   display: block;
   margin: 0 auto; /* centers the button */
   text-align: center;
-  width: 10px;
+  width: 180px;
 }
 .contact-form button:hover { 
   background: #67e0c3; 
@@ -393,13 +394,16 @@ body {
 @media (max-width: 1200px) {
   .features-grid {
     grid-template-columns: repeat(2,1fr);
+  }
   .nav-arrow { display: flex !important; }
   .products-container {
     overflow-x: hidden;
   }
-    .products-container::-webkit-scrollbar {
+  .products-container::-webkit-scrollbar {
     display: none;
+  }
 }
+
 @media (max-width: 768px) {
   .hero {
     justify-content: center;
@@ -408,31 +412,24 @@ body {
   .hero-content {
     text-align: center;
   }
-  .hero h1 {
-    font-size: 2.1rem;
-  }
-  .hero p {
-    font-size: 1.03rem;
-  }
-  .section-title {
-    font-size: 1.23rem;
-  }
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-  .contact-form-wrapper {
-    max-width: 100%;
+  .hero h1 { font-size: 2.1rem; }
+  .hero p { font-size: 1.03rem; }
+  .section-title { font-size: 1.23rem; }
+  .features-grid { grid-template-columns: 1fr; }
+  .contact-form-wrapper { 
+    max-width: 95%; 
+    padding: 0 10px; 
   }
   .product-card {
-    flex: 0 0 86vw;
-    max-width: 86vw;
+    flex: 0 0 90%;
+    max-width: 90%;
+    margin: 0 auto;
   }
-  .testimonial {
-    width: 82vw;
-  }
+  .testimonial { width: 82vw; }
   .nav-arrow { display: none; }
   .about-content h3 { font-size: 1.02rem; }
 }
+
 @media (max-width: 480px) {
   .hero h1 { font-size: 1.15rem; }
   .hero p { font-size: 0.7rem; }
@@ -440,3 +437,4 @@ body {
   .contact-form { padding: 18px 8px; }
   .about-content h3 { font-size: 0.97rem; }
 }
+
