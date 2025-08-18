@@ -435,5 +435,30 @@ body {
   .products-container { 
     overflow-x: auto; /* allow swipe scrolling on mobile */
   }
+  
 }
+
+  .contact-form {
+    width: 100% !important;     /* use entire screen width */
+    max-width: 100% !important; /* remove any desktop max constraint */
+    margin: 0;                  
+    padding: 20px;              /* balanced padding inside */
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+.contact-section,
+  .contact-form-wrapper, /* whichever parent container you have */
+  .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;   
+   
+  }
+}
+
 
