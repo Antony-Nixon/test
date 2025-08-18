@@ -194,9 +194,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .nav-arrow { display: none !important; } /* hide on mobile */
-  .products-container { overflow-x: auto; }
+
 
 /* Testimonials */
 .testimonials {
@@ -405,38 +403,4 @@ body {
   .products-container::-webkit-scrollbar {
     display: none;
   }
-}
-
-@media (max-width: 768px) {
-  .hero {
-    justify-content: center;
-    padding-left: 20px;
-  }
-  .hero-content {
-    text-align: center;
-  }
-  .hero h1 { font-size: 6rem; }
-  .hero p { font-size: 2rem; }
-  .section-title { font-size: 3rem; }
-  .features-grid { grid-template-columns: 1fr; }
-  .contact-form-wrapper { 
-    max-width: 97%; 
-    padding: 0 4px; 
-  }
-  .product-card {
-    flex: 0 0 90%;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-  .testimonial { width: 82vw; }
-  .nav-arrow { display: none; }
-  .about-content h3 { font-size: 1.02rem; }
-}
-
-@media (max-width: 480px) {
-  .hero h1 { font-size: 1.15rem; }
-  .hero p { font-size: 0.7rem; }
-  .section-title { font-size: 3rem; }
-  .contact-form { padding: 18px 8px; }
-  .about-content h3 { font-size: 0.97rem; }
 }
