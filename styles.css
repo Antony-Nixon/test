@@ -292,22 +292,32 @@ body {
   border: 1px solid #ccc;
   outline: none;
   font-size: 1rem;
+  font-family: 'Montserrat', sans-serif; /* fix textarea font */
 }
 .contact-form textarea {
   min-height: 120px;
   resize: vertical;
 }
 .contact-form button {
-  background: #0073e6;
-  color: white;
-  padding: 0.75rem;
+  background: #60CEAA;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
   cursor: pointer;
   transition: background 0.3s;
+  box-shadow: 0 3px 9px #60CEAA30;
+  display: block;
+  margin: 0 auto; /* centers the button */
+  text-align: center;
 }
-.contact-form button:hover { background: #67e0c3; color: #23313A; }
+.contact-form button:hover { 
+  background: #67e0c3; 
+  color: #23313A; 
+}
+
 
 /* Social Icons */
 .social-icons {
@@ -334,24 +344,16 @@ body {
   color: #23313A !important;
   box-shadow: 0 4px 11px #c3f5e658;
 }
-/* WhatsApp */
-.social-icons .whatsapp {
-  background: #25D366;
+.social-links a.whatsapp {
+  background: #25D366;   /* WhatsApp green */
 }
-
-/* Email */
-.social-icons .email {
-  background: #D44638;
+.social-links a.instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, 
+              #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
-
-/* Instagram (gradient) */
-.social-icons .instagram {
-  background: radial-gradient(circle at 30% 107%, 
-              #fdf497 0%, #fdf497 5%, 
-              #fd5949 45%, #d6249f 60%, 
-              #285AEB 90%);
+.social-links a.email {
+  background: #D44638;   /* Gmail red */
 }
-
 /* About */
 .about {
   padding: 70px 0;
