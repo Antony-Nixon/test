@@ -299,17 +299,14 @@ body {
 }
 text-align: center;
 .contact-form button {
-  background: #60CEAA;
-  color: #fff;
+  background: #0073e6;
+  color: white;
   padding: 0.75rem;
   border: none;
   border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
-  letter-spacing: .025rem;
-  transition: background 0.25s;
-  box-shadow: 0 3px 9px #60CEAA18;
+  transition: background 0.3s;
 }
 .contact-form button:hover { background: #67e0c3; color: #23313A; }
 
