@@ -412,13 +412,13 @@ body {
   .hero-content {
     text-align: center;
   }
-  .hero h1 { font-size: 2.1rem; }
-  .hero p { font-size: 1.03rem; }
-  .section-title { font-size: 1.23rem; }
+  .hero h1 { font-size: 6rem; }
+  .hero p { font-size: 2rem; }
+  .section-title { font-size: 3rem; }
   .features-grid { grid-template-columns: 1fr; }
   .contact-form-wrapper { 
-    max-width: 95%; 
-    padding: 0 10px; 
+    max-width: 97%; 
+    padding: 0 4px; 
   }
   .product-card {
     flex: 0 0 90%;
