@@ -392,15 +392,48 @@ body {
 }
 
 /* Responsive */
+/* Tablet breakpoint (<=1200px) */
 @media (max-width: 1200px) {
-  .features-grid {
-    grid-template-columns: repeat(2,1fr);
+  .features-grid { 
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablet */
   }
-  .nav-arrow { display: flex !important; }
-  .products-container {
+
+  .nav-arrow { 
+    display: flex !important; /* show arrows on tablet */
+  }
+
+  .products-container { 
     overflow-x: hidden;
   }
-  .products-container::-webkit-scrollbar {
-    display: none;
+
+  .products-container::-webkit-scrollbar { 
+    display: none; 
   }
 }
+
+/* Mobile breakpoint (<=768px) */
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr; /* 1 card per row on mobile */
+    gap: 14px;
+    padding: 0 12px; /* keep some breathing space */
+  }
+
+  .feature-card h3 {
+    font-size: 1rem;
+  }
+
+  .feature-card p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .nav-arrow { 
+    display: none !important; /* hide arrows on mobile */
+  }
+
+  .products-container { 
+    overflow-x: auto; /* allow swipe scrolling on mobile */
+  }
+}
+
